@@ -3,5 +3,9 @@ const TelegramBot = require('node-telegram-bot-api')
 const bot = new TelegramBot(TOKEN, {polling: true})
 
 bot.on('message', msg => {
-    bot.sendMessage(msg.chat.id, 'Здравствуй!')
+    bot.sendMessage(msg.chat.id, 'Здравствуй! Интересна погода?', {
+        "reply_markup": {
+            "keyboard": [["Yes"], ["No"]]
+        }
+    })
 })
