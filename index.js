@@ -6,6 +6,7 @@ bot.on('message', msg => {
     var yes = "Yes";
     if (msg.text.indexOf(yes) === 0) {
         bot.sendMessage(msg.chat.id, "I will show you everything!");
+        bot.sendMessage(msg.chat.id, msg.location.longitude + " " + msg.location.latitude);
     }
 
     var no = "No";
