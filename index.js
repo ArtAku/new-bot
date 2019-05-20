@@ -10,7 +10,7 @@ bot.on('location', (msg) => {
     bot.sendMessage(msg.chat.id, "Here you can check the weather: " + request_string);
 
     request(request_string, function (err, resp, body) {
-        bot.sendMessage(msg.chat.id, body.explanation)
+        bot.sendMessage(msg.chat.id, "Entered in request")
     })
 });
 
