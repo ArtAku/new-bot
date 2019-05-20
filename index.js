@@ -10,7 +10,7 @@ bot.on('location', (msg) => {
 
     const request = require('request');
 
-    request('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', { json: true }, (err, res, body) => {
+    request(reqest_string, { json: true }, (err, res, body) => {
         bot.sendMessage(msg.chat.id, body.url);
         if (err) { return console.log(err); }
         console.log(body.url);
