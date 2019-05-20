@@ -4,7 +4,7 @@ const bot = new TelegramBot(TOKEN, {polling: true})
 
 bot.on('message', msg => {
     var yes = "Yes";
-    if (msg.location) {
+    if (msg.text.length == 0) {
         bot.sendMessage(msg.chat.id, "I will show you everything!");
     }
 
