@@ -5,19 +5,7 @@ const bot = new TelegramBot(TOKEN, {polling: true})
 bot.on('message', msg => {
     var yes = "Yes";
     if (msg.text.indexOf(yes) === 0) {
-        bot.sendMessage(msg.chat.id, "I will show you everything!", [msg.location.longitude,msg.location.latitude].join(";"));
-    }
-
-    var no = "No";
-    if (msg.text.indexOf(no) === 0) {
-        bot.sendMessage(msg.chat.id, "Then just leave!");
-    } 
-})
-
-bot.on('location', msg => {
-    var yes = "Yes";
-    if (msg.text.indexOf(yes) === 0) {
-        bot.sendMessage(msg.chat.id, "I will show you everything!", [msg.location.longitude,msg.location.latitude].join(";"));
+        bot.sendMessage(msg.chat.id, "I will show you everything!");
     }
 
     var no = "No";
