@@ -1,7 +1,6 @@
 const TOKEN = '693092471:AAEO3JdTxgcvClWK6Cp-s5GqaEdSs94TLzE'
 const TelegramBot = require('node-telegram-bot-api')
 const bot = new TelegramBot(TOKEN, {polling: true})
-const https = requre('https');
 
 bot.on('location', (msg) => {
     bot.sendMessage(msg.chat.id, "I will show you everything!" + msg.location.latitude + " " + msg.location.longitude);
