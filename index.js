@@ -1,10 +1,22 @@
 const TOKEN = '693092471:AAEO3JdTxgcvClWK6Cp-s5GqaEdSs94TLzE'
 const TelegramBot = require('node-telegram-bot-api')
 const bot = new TelegramBot(TOKEN, {polling: true})
-var loc = false;
+const https = requre('https');
 
 bot.on('location', (msg) => {
     bot.sendMessage(msg.chat.id, "I will show you everything!" + msg.location.latitude + " " + msg.location.longitude);
+    var reqest_string = 'https://api.openweathermap.org/data/2.5/weather?lat=';
+    reqest_string += msg.location.latitude + '&lon=' + msg.location.longitude;
+    var data = '';
+    https.get(reqest_string, (resp) => {
+        resp.on('data', (chunk) => {
+            data += chunk;
+        })
+
+        resp.on('end', () => {
+            bot.sendMessage(msg.chat.id, data);
+        })
+    })
 });
 
 bot.onText(/\/start/, (msg) => {
