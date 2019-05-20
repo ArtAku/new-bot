@@ -3,8 +3,8 @@ const TelegramBot = require('node-telegram-bot-api')
 const bot = new TelegramBot(TOKEN, {polling: true})
 
 bot.on('message', msg => {
-    var yes = "Yes";
-    if (msg.location) {
+    var yes = "";
+    if (msg.text.toString().indexOf(yes) === 0) {
         bot.sendMessage(msg.chat.id, "I will show you everything!");
     }
 
@@ -14,12 +14,14 @@ bot.on('message', msg => {
     } 
 })
 
+bot.on('location',)
+
 bot.onText(/\/start/, (msg) => {
     var option = {
         "reply_markup": {
             "keyboard": [[{ 
                 text: "Yes",
-                request_location: true
+                request_location: true,
             }], ["No"]]
         }
     }
