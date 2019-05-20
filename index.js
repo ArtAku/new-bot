@@ -9,8 +9,12 @@ bot.on('location', (msg) => {
     reqest_string += msg.location.latitude + '&lon=' + msg.location.longitude + '&appid=92b1a5b3125eff26a674219cc3f78775';
     bot.sendMessage(msg.chat.id, reqest_string);
 
-    axios.get(reqest_string).then(response => {
-        bot.sendMessage(msg.chat.id, response);
+    axios.get(reqest_string, {
+        params: {
+            var: result
+        }
+    }).then(response => {
+        bot.sendMessage(msg.chat.id, result);
   })
 });
 
