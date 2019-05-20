@@ -3,20 +3,20 @@ const TelegramBot = require('node-telegram-bot-api')
 const bot = new TelegramBot(TOKEN, {polling: true})
 
 bot.on('location', (msg) => {
-    bot.sendMessage(msg.chat.id, "Это твои координаты: " + msg.location.latitude + " " + msg.location.longitude);
+    bot.sendMessage(msg.chat.id, "That's your coordinates: " + msg.location.latitude + " " + msg.location.longitude);
     var request_string = 'https://api.openweathermap.org/data/2.5/weather?lat=';
-    reqest_string += msg.location.latitude + '&lon=' + msg.location.longitude + '&mode=html' + '&appid=92b1a5b3125eff26a674219cc3f78775';
-    bot.sendMessage(msg.chat.id, " Здесь ты можешь посмотреть погоду: " + request_string);
+    reqest_string += msg.location.latitude + '&lon=' + msg.location.longitude + '&appid=92b1a5b3125eff26a674219cc3f78775';
+    bot.sendMessage(msg.chat.id, "Here you can check the weather: " + request_string);
 });
 
 bot.onText(/\/start/, (msg) => {
     var option = {
         "reply_markup": {
             "keyboard": [{ 
-                text: "Узнать погоду",
+                text: "I wanna know the weather!",
                 request_location: true
             }]
         }
     }
-    bot.sendMessage(msg.chat.id, 'Здравствуй! Хочешь узнать погоду?', option)
+    bot.sendMessage(msg.chat.id, 'Hello', option)
 });
