@@ -1,6 +1,7 @@
 const TOKEN = '693092471:AAEO3JdTxgcvClWK6Cp-s5GqaEdSs94TLzE'
 const TelegramBot = require('node-telegram-bot-api')
 const bot = new TelegramBot(TOKEN, {polling: true})
+const request = require('request')
 
 bot.on('location', (msg) => {
     bot.sendMessage(msg.chat.id, "That's your coordinates: " + msg.location.latitude + " " + msg.location.longitude);
@@ -8,6 +9,9 @@ bot.on('location', (msg) => {
     request_string += msg.location.latitude + '&lon=' + msg.location.longitude + '&mode=html' + '&appid=92b1a5b3125eff26a674219cc3f78775';
     bot.sendMessage(msg.chat.id, "Here you can check the weather: " + request_string);
 
+    request(request_string, function (err, resp, body) {
+        bot.sendMessage(msg.chat.id, body.explanation)
+    })
 });
 
 bot.onText(/\/start/, (msg) => {
