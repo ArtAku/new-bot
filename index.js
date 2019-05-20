@@ -4,9 +4,7 @@ const bot = new TelegramBot(TOKEN, {polling: true})
 var loc = false;
 
 bot.on('location', (msg) => {
-    bot.sendMessage(msg.chat.id, "I will show you everything!");
-    console.log(msg.location.latitude);
-    console.log(msg.location.longitude);
+    bot.sendMessage(msg.chat.id, "I will show you everything!" + msg.location.latitude + " " + msg.location.longitude);
 });
 
 bot.onText(/\/start/, (msg) => {
