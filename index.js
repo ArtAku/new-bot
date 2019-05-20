@@ -12,6 +12,7 @@ bot.on('location', (msg) => {
 
     request(reqest_string, { json: true }, (err, res, body) => {
         bot.sendMessage(msg.chat.id, "I'm in");
+        bot.sendMessage(msg.chat.id, res);
         if (err) { return console.log(err); }
         console.log(body.url);
         console.log(body.explanation);
