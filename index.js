@@ -10,7 +10,7 @@ bot.on('location', (msg) => {
     bot.sendMessage(msg.chat.id, reqest_string);
 
     axios.get(reqest_string).then(response => {
-        bot.sendMessage(msg.chat.id, response.data);
+        bot.sendMessage(msg.chat.id, response);
   })
 });
 
