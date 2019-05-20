@@ -12,7 +12,27 @@ bot.on('message', msg => {
     if (msg.text.indexOf(no) === 0) {
         bot.sendMessage(msg.chat.id, "Then just leave!");
     } 
-})
+});
+
+bot.onText(/getLocation/, (msg) => {
+    const opts = {
+      reply_markup: JSON.stringify({
+        keyboard: [
+          [{text: 'Location', request_location: true}],
+          [{text: 'Contact', request_contact: true}],
+        ],
+        resize_keyboard: true,
+        one_time_keyboard: true,
+      }),
+    };
+    bot.sendMessage(msg.chat.id, 'Contact and Location request', opts);
+});
+
+bot.on('location', (msg) => {
+    bot.sendMessage(msg.chat.id, "I will show you everything!");
+    console.log(msg.location.latitude);
+    console.log(msg.location.longitude);
+});
 
 bot.onText(/\/start/, (msg) => {
     var option = {
@@ -24,4 +44,4 @@ bot.onText(/\/start/, (msg) => {
         }
     }
     bot.sendMessage(msg.chat.id, 'Здравствуй! Интересна погода?', option)
-})
+});
