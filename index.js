@@ -7,6 +7,12 @@ bot.on('location', (msg) => {
     var reqest_string = 'https://api.openweathermap.org/data/2.5/weather?lat=';
     reqest_string += msg.location.latitude + '&lon=' + msg.location.longitude + '&appid=92b1a5b3125eff26a674219cc3f78775';
     bot.sendMessage(msg.chat.id, reqest_string);
+
+    const request = require('request');
+
+    request(reqest_string, { json: true }, (err, res, body) => {
+        bot.sendMessage(res);
+    });
 });
 
 bot.onText(/\/start/, (msg) => {
