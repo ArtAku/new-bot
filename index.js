@@ -5,8 +5,9 @@ const bot = new TelegramBot(TOKEN, {polling: true})
 bot.on('location', (msg) => {
     bot.sendMessage(msg.chat.id, "That's your coordinates: " + msg.location.latitude + " " + msg.location.longitude);
     var request_string = 'https://api.openweathermap.org/data/2.5/weather?lat=';
-    request_string += msg.location.latitude + '&lon=' + msg.location.longitude + '&appid=92b1a5b3125eff26a674219cc3f78775';
+    request_string += msg.location.latitude + '&lon=' + msg.location.longitude + '&mode=html' + '&appid=92b1a5b3125eff26a674219cc3f78775';
     bot.sendMessage(msg.chat.id, "Here you can check the weather: " + request_string);
+
 });
 
 bot.onText(/\/start/, (msg) => {
