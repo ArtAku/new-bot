@@ -11,7 +11,7 @@ bot.on('location', (msg) => {
     const request = require('request');
 
     request(reqest_string, { json: true }, (err, res, body) => {
-        bot.sendMessage(msg.chat.id, body.url);
+        bot.sendMessage(msg.chat.id, res.request);
         if (err) { return console.log(err); }
         console.log(body.url);
         console.log(body.explanation);
